@@ -1,9 +1,10 @@
 [package]
 name = "rws-cli"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
 
 [dependencies]
+rws = { path = "../rws" }
 clap = { version= "4.5.1", features=["derive"] }
 tokio = { version = "1.36.0", features = ["full"] }
 

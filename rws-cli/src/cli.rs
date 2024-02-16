@@ -1,4 +1,5 @@
 use clap::Parser;
+use librws::print_info;
 
 #[derive(Parser, Debug)]
 struct Args {
@@ -15,20 +16,13 @@ struct Args {
     user_passwd: String,
 }
 
+
 fn main() {
     let args = Args::parse();
-    let device_id = &args.device_id;
-    let interface_name = &args.interface_name;
-    let socks5_port = &args.port_socks5;
-    let user_passwd_parts: Vec<&str> = args.user_passwd.split(':').collect();
-    let (user, passwd) = match user_passwd_parts.as_slice() {
-        [user, passwd] => (user, passwd),
-        _ => (&"", &""),
-    };
-
-    println!("Device ID: {}", device_id);
-    println!("Interface Name: {}", interface_name);
-    println!("SOCKS5 Port: {}", socks5_port);
-    println!("User: {}", user);
-    println!("Password: {}", passwd);
+    print_info(
+        &args.device_id,
+        &args.interface_name,
+        &args.port_socks5,
+        &args.user_passwd
+    );
 }
