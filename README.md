@@ -1,2 +1,2 @@
 # RWS
-Unofficial Rust implement of Cloudflare Warp Proxy with Socks5 supoort
+Unofficial Rust implementation of Cloudflare Warp Proxy with Socks5 support.
