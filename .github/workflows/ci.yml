@@ -1,0 +1,34 @@
+name: ci
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  CARGO_TERM_COLOR: always
+  CARGO_LOCA: "rws-cli/Cargo.toml"
+  CARGO_BIN: "rws-cli"
+
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  pre:
+    runs-on: ubuntu-latest
+    outputs:
+      cargo_loc: ${{ env.CARGO_LOCA }}
+      cargo_bin: ${{ env.CARGO_BIN }}
+    steps:
+      - run: echo "Bypass GitHub Action Restriction"
+
+  call:
+    needs:
+      - pre
+    uses: AUTOM77/Rust-Actions/.github/workflows/ci.yml@main
+    with:
+      cargo_loc: ${{ needs.pre.outputs.cargo_loc }}
+      cargo_bin: ${{ needs.pre.outputs.cargo_bin }}
+    secrets: inherit
