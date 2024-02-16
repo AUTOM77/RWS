@@ -15,7 +15,10 @@
 
 ## Usage
 
-`rws-cli ${DEVICE_ID} -i ${INTERFACE-NAME} -p ${SOCKS5-PORT} -U ${USER:PASSWD}`
+`rws-cli -d ${DEVICE_ID} -i ${INTERFACE-NAME} -p ${SOCKS5-PORT} -U ${USER:PASSWD}`
+
+e.g:
+`rws-cli -d "rws0xFFFF" -i "warp" -p "9091" -U "automa77:passwd" `
 
 ## Notice of Non-Affiliation and Disclaimer
 
