@@ -13,6 +13,10 @@
 2. Asynchronous acquisition for WARP Plus Subscription in `tokio`
 3. Invocation of the `Socks5` proxy protocol with password protection
 
+## Usage
+
+`rws-cli ${DEVICE_ID} -i ${INTERFACE-NAME} -p ${SOCKS5-PORT} -U ${USER:PASSWD}`
+
 ## Notice of Non-Affiliation and Disclaimer
 
 - We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with WireGuard, or any of its subsidiaries or its affiliates. The official WireGuard website can be found at <https://www.wireguard.com/>.
