@@ -10,7 +10,7 @@
 ## Features
 
 1. Implementation of `eBPF-driven` **Wireguard** in Rust
-2. Asynchronous acquisition for WARP Plus Subscription in `tokio`
+2. Asynchronous acquisition for WARP Plus Subscription with `tokio`
 3. Invocation of the `Socks5` proxy protocol with password protection
 
 ## Usage
