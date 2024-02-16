@@ -1,6 +1,5 @@
 use clap::Parser;
 
-/// Simple program to interact with rws-cli
 #[derive(Parser, Debug)]
 struct Args {
     #[clap(short='d', long, name = "DEVICE_ID")]
@@ -18,8 +17,6 @@ struct Args {
 
 fn main() {
     let args = Args::parse();
-
-    // Access the parsed command-line arguments
     let device_id = &args.device_id;
     let interface_name = &args.interface_name;
     let socks5_port = &args.port_socks5;
