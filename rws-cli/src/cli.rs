@@ -1,5 +1,5 @@
 use clap::Parser;
-use librws::warp::account::Payload;
+use librws::warp::account::WClient;
 
 #[derive(Parser, Debug)]
 struct Args {
@@ -18,8 +18,12 @@ struct Args {
 
 fn main() {
     let args = Args::parse();
-    let payload = Payload::new(&args.device_id);
-    payload.generate();
+    let payload = WClient::new(
+        &args.device_id,
+        "pc",
+        "Android"
+    );
+    // payload.generate();
     payload.generate_tz();
     // println!("{:#?}", payload);
 
