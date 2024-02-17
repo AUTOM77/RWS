@@ -1,5 +1,5 @@
 use clap::Parser;
-use librws::warp::account::WClient;
+use librws::warp::account::WClientBuilder;
 
 #[derive(Parser, Debug)]
 struct Args {
@@ -18,20 +18,7 @@ struct Args {
 
 fn main() {
     let args = Args::parse();
-    let payload = WClient::new(
-        &args.device_id,
-        "pc",
-        "Android"
-    );
-    // payload.generate();
-    payload.generate_tz();
-    // println!("{:#?}", payload);
-
-    // print_info(
-    //     &args.device_id,
-    //     &args.interface_name,
-    //     &args.port_socks5,
-    //     &args.user_passwd
-    // );
-    // print_random();
+    let wclient = WClientBuilder::new()
+    .w_id(&args.device_id)
+    .build();
 }

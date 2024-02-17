@@ -1,31 +1,46 @@
-use serde::Deserialize;
-
-use super::random;
-
-#[derive(Deserialize, Debug)]
-pub struct WClient {
-    device_id: String,
-    device_model: String,
-    device_type: String
+pub struct WClientBuilder<'w> {
+    _id: Option<&'w str>,
+    _model: Option<&'w str>,
+    _type: Option<&'w str>,
+    _key: Option<&'w str>,
 }
 
-impl WClient {
-    pub fn new(_id: &str, _model: &str, _type: &str) -> Self {
-        Self{
-            device_id: _id.to_owned(),
-            device_model: _model.to_owned(),
-            device_type: _type.to_owned(),
+impl<'w> WClientBuilder<'w> {
+    pub fn new() -> WClientBuilder<'w> {
+        WClientBuilder {
+            _id: None,
+            _model: None,
+            _type: None,
+            _key: None,
         }
     }
 
-    pub fn get_header(&self) {
-        println!{"{}", "header"};
+    pub fn w_id(mut self, _id: &'w str) -> Self {
+        self._id = Some(_id);
+        self
     }
 
-    pub fn generate_tz(&self) {
-        random::tz::sample();
+    pub fn w_model(mut self, _model: &'w str) -> Self {
+        self._model = Some(_model);
+        self
     }
-    pub fn generate_fake(&self) {
-        random::fake::sample();
+
+    pub fn w_type(mut self, _type: &'w str) -> Self {
+        self._type = Some(_type);
+        self
+    }
+
+    pub fn w_key(mut self, _key: &'w str) -> Self {
+        self._key = Some(_key);
+        self
+    }
+
+    pub fn build(self) -> WClientBuilder<'w> {
+        WClientBuilder {
+            _id: Some(self._id.unwrap_or("default_id")),
+            _model: Some(self._model.unwrap_or("default_model")),
+            _type: Some(self._type.unwrap_or("default_type")),
+            _key: Some(self._key.unwrap_or("default_key")),
+        }
     }
 }
