@@ -1,5 +1,5 @@
 use clap::Parser;
-use librws::print_info;
+use librws::warp::account::Payload;
 
 #[derive(Parser, Debug)]
 struct Args {
@@ -16,13 +16,18 @@ struct Args {
     user_passwd: String,
 }
 
-
 fn main() {
     let args = Args::parse();
-    print_info(
-        &args.device_id,
-        &args.interface_name,
-        &args.port_socks5,
-        &args.user_passwd
-    );
+    let payload = Payload::new(&args.device_id);
+    payload.generate();
+    payload.generate_tz();
+    // println!("{:#?}", payload);
+
+    // print_info(
+    //     &args.device_id,
+    //     &args.interface_name,
+    //     &args.port_socks5,
+    //     &args.user_passwd
+    // );
+    // print_random();
 }
