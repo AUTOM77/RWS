@@ -13,7 +13,9 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - "master"
+      - "main"
+    paths:
+      - "rws-cli/Cargo.toml"
 
 jobs:
   pre:
