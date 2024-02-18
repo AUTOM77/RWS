@@ -69,6 +69,10 @@ impl<'w> WClientBuilder<'w> {
         self.w_model(random::md::sample())
     }
 
+    pub fn random_tp(self) -> Self {
+        self.w_type(random::tp::sample())
+    }
+
     pub fn random_tz(self) -> Self {
         let (t, z) = random::tz::sample(); 
         self.w_tos(t)

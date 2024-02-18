@@ -21,6 +21,7 @@ fn main() {
     let wclient = WClientBuilder::new()
     .w_id(&args.device_id)
     .random_mode()
+    .random_tp()
     .random_tz()
     .build();
 
