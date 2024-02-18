@@ -85,6 +85,7 @@ impl<'w> WClientBuilder<'w> {
     pub fn random_id(self) -> Self {
         self.w_id(random::fake::take(22, |_c| true))
     }
+
     pub fn random_key(self) -> Self {
         self.w_key(random::fake::take(43, |_c| true))
     }
@@ -96,14 +97,36 @@ impl<'w> WClientBuilder<'w> {
     pub fn random_token(self) -> Self {
         self.w_token(random::fake::take(134, |_c| true))
     }
+    
     pub fn random_dev(self) -> Self {
         let (t, z) = random::dev::sample(); 
         self.w_model(t)
             .w_type(z)
     }
+
     pub fn random_tz(self) -> Self {
         let (t, z) = random::tz::sample(); 
         self.w_tos(t)
             .w_locale(z)
+    }
+
+    pub fn from_id(_id:&'w str) -> Self {
+        WClientBuilder::new()
+        .w_id(_id)
+        .wg_key()
+        .random_token()
+        .random_dev()
+        .random_tz()
+        .build()
+    }
+
+    pub fn random() -> Self {
+        WClientBuilder::new()
+        .random_id()
+        .wg_key()
+        .random_token()
+        .random_dev()
+        .random_tz()
+        .build()
     }
 }

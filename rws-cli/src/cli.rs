@@ -18,15 +18,7 @@ struct Args {
 
 fn main() {
     let _args = Args::parse();
-    let wclient = WClientBuilder::new()
-    // .w_id(&args.device_id)
-    .random_id()
-    // .random_key()
-    .wg_key()
-    .random_token()
-    .random_dev()
-    .random_tz()
-    .build();
+    let wclient = WClientBuilder::random();
 
     println!("{:#?}", wclient);
 }
