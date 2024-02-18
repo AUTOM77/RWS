@@ -1,4 +1,5 @@
-use super::random;
+use crate::warp::random;
+use crate::wireguard::crypto;
 use serde::Deserialize;
 use std::fmt;
 
@@ -87,6 +88,11 @@ impl<'w> WClientBuilder<'w> {
     pub fn random_key(self) -> Self {
         self.w_key(random::fake::take(43, |_c| true))
     }
+
+    pub fn wg_key(self) -> Self {
+        self.w_key(crypto::sample())
+    }
+
     pub fn random_token(self) -> Self {
         self.w_token(random::fake::take(134, |_c| true))
     }

@@ -9,9 +9,10 @@
 
 ## Features
 
-1. Implementation of `eBPF-driven` **Wireguard** in Rust
+1. Implementation **Wireguard** protocol in Rust with `eBPF-driven` optimization
 2. Asynchronous acquisition for WARP Plus Subscription with `tokio`
-3. Invocation of the `Socks5` proxy protocol with password protection
+3. Apply the `Socks5` proxy protocol with username/password authentication to enhance privacy and bypass firewalls
+4. Enable `curve25519` encryption with `x25519_dalek` implementation of x25519 key exchange algorithm
 
 ## Usage
 

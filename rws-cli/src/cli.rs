@@ -1,5 +1,5 @@
 use clap::Parser;
-use librws::warp::account::WClientBuilder;
+use librws::account::WClientBuilder;
 
 #[derive(Parser, Debug)]
 struct Args {
@@ -21,7 +21,8 @@ fn main() {
     let wclient = WClientBuilder::new()
     // .w_id(&args.device_id)
     .random_id()
-    .random_key()
+    // .random_key()
+    .wg_key()
     .random_token()
     .random_dev()
     .random_tz()
