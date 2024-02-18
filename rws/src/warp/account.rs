@@ -1,3 +1,5 @@
+use super::random;
+
 pub struct WClientBuilder<'w> {
     _id: Option<&'w str>,
     _model: Option<&'w str>,
@@ -42,5 +44,10 @@ impl<'w> WClientBuilder<'w> {
             _type: Some(self._type.unwrap_or("default_type")),
             _key: Some(self._key.unwrap_or("default_key")),
         }
+    }
+
+    pub fn process(self) {
+        let x = random::tz::sample();
+        println!("{:#?}", x );
     }
 }

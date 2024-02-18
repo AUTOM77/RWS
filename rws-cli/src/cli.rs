@@ -21,4 +21,6 @@ fn main() {
     let wclient = WClientBuilder::new()
     .w_id(&args.device_id)
     .build();
+
+    wclient.process();
 }
