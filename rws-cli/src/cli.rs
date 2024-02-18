@@ -20,7 +20,9 @@ fn main() {
     let args = Args::parse();
     let wclient = WClientBuilder::new()
     .w_id(&args.device_id)
+    .random_mode()
+    .random_tz()
     .build();
 
-    wclient.process();
+    println!("{:#?}", wclient);
 }

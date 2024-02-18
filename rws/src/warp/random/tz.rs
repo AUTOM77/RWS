@@ -1,26 +1,23 @@
-use std::borrow::Cow;
 use rand::Rng as _;
 use chrono::Local;
 use chrono_tz::Tz;
 
-
-fn process<'a>(_pair: (&'a  str, &'a  str)) -> (Cow<'a, str>, Cow<'a, str>){
+fn process(_pair: (&str, &str)) -> (&'static str, &'static str){
     let (locale, timezone) = _pair;
     let utc = Local::now();
     match timezone.parse::<Tz>() {
         Ok(tz) => {
-            let tz_time = utc.with_timezone(&tz).format("%Y-%m-%dT%H:%M:%S%.3f%:z").to_string();
-            (locale.into(), tz_time.into())
+            let tz_time = utc.with_timezone(&tz).format("%Y-%m-%dT%H:%M:%S%.3f%:z");
+            (locale.to_string().leak(), tz_time.to_string().leak())
         }
         Err(_) => {
-            let tz_time = utc.format("%Y-%m-%dT%H:%M:%S%.3f%:z").to_string();
-            (locale.into(), tz_time.into())
+            let tz_time = utc.format("%Y-%m-%dT%H:%M:%S%.3f%:z");
+            (locale.to_string().leak(), tz_time.to_string().leak())
         }
     }
 }
 
-
-pub fn sample()-> (Cow<'static, str>, Cow<'static, str>){
+pub fn sample()-> (&'static str, &'static str){
     let tz_pool = vec![
         ("en-US","America/New_York"),
         ("en-GB","Europe/London"),
@@ -129,6 +126,5 @@ pub fn sample()-> (Cow<'static, str>, Cow<'static, str>){
 
     let mut rng = rand::thread_rng();
     let _idx = rng.gen_range(0..tz_pool.len());
-    
     process(tz_pool[_idx])
 }

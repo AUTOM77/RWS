@@ -1,10 +1,14 @@
 use super::random;
+use serde::Deserialize;
 
+#[derive(Deserialize, Debug)]
 pub struct WClientBuilder<'w> {
     _id: Option<&'w str>,
     _model: Option<&'w str>,
     _type: Option<&'w str>,
     _key: Option<&'w str>,
+    _tos: Option<&'w str>,
+    _locale: Option<&'w str>,
 }
 
 impl<'w> WClientBuilder<'w> {
@@ -14,8 +18,11 @@ impl<'w> WClientBuilder<'w> {
             _model: None,
             _type: None,
             _key: None,
+            _tos: None,
+            _locale: None,
         }
     }
+
 
     pub fn w_id(mut self, _id: &'w str) -> Self {
         self._id = Some(_id);
@@ -37,17 +44,34 @@ impl<'w> WClientBuilder<'w> {
         self
     }
 
+    pub fn w_tos(mut self, _tos: &'w str) -> Self {
+        self._tos = Some(_tos);
+        self
+    }
+
+    pub fn w_locale(mut self, _locale: &'w str) -> Self {
+        self._locale = Some(_locale);
+        self
+    }
+
     pub fn build(self) -> WClientBuilder<'w> {
         WClientBuilder {
             _id: Some(self._id.unwrap_or("default_id")),
             _model: Some(self._model.unwrap_or("default_model")),
             _type: Some(self._type.unwrap_or("default_type")),
             _key: Some(self._key.unwrap_or("default_key")),
+            _tos: Some(self._tos.unwrap_or("default_tos")),
+            _locale: Some(self._locale.unwrap_or("default_locale")),
         }
     }
 
-    pub fn process(self) {
-        let x = random::tz::sample();
-        println!("{:#?}", x );
+    pub fn random_mode(self) -> Self {
+        self.w_model(random::md::sample())
+    }
+
+    pub fn random_tz(self) -> Self {
+        let (t, z) = random::tz::sample(); 
+        self.w_tos(t)
+            .w_locale(z)
     }
 }
