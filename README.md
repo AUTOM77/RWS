@@ -1,7 +1,7 @@
 # RWS
 
 <p align="center" width="100%">
-<img src="assets/logo.png" alt="Stanford-Alpaca" style="width: 50%; min-width: 300px; display: block; margin: auto;">
+<img src="assets/logo.png" alt="RWS-CLI" style="width: 50%; min-width: 300px; display: block; margin: auto;">
 </p>
 
 [![CI Status](https://github.com/AUTOM77/RWS/workflows/ci/badge.svg)](https://github.com/AUTOM77/RWS/actions?query=workflow:ci)
