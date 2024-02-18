@@ -7,7 +7,7 @@ pub struct WClientBuilder<'w> {
 
 impl<'w> WClientBuilder<'w> {
     pub fn new() -> WClientBuilder<'w> {
-        WClientBuilder {
+        Self {
             _id: None,
             _model: None,
             _type: None,
