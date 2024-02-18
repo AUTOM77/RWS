@@ -1,7 +1,8 @@
 use super::random;
 use serde::Deserialize;
+use std::fmt;
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize)]
 pub struct WClientBuilder<'w> {
     _id: Option<&'w str>,
     _key: Option<&'w str>,
@@ -9,6 +10,19 @@ pub struct WClientBuilder<'w> {
     _type: Option<&'w str>,
     _tos: Option<&'w str>,
     _locale: Option<&'w str>,
+}
+
+impl<'w> fmt::Debug for WClientBuilder<'w> {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.debug_struct("Client")
+            .field("id", &self._id.unwrap_or("default_id"))
+            .field("key", &self._key.unwrap_or("default_key"))
+            .field("model", &self._model.unwrap_or("default_model"))
+            .field("type", &self._type.unwrap_or("default_type"))
+            .field("tos", &self._tos.unwrap_or("default_tos"))
+            .field("locale", &self._locale.unwrap_or("default_locale"))
+            .finish()
+    }
 }
 
 impl<'w> WClientBuilder<'w> {
