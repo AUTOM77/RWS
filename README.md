@@ -1,5 +1,9 @@
 # RWS
 
+<p align="center" width="100%">
+<img src="assets/logo.png" alt="Stanford-Alpaca" style="width: 50%; min-width: 300px; display: block; margin: auto;">
+</p>
+
 [![CI Status](https://github.com/AUTOM77/RWS/workflows/ci/badge.svg)](https://github.com/AUTOM77/RWS/actions?query=workflow:ci)
 [![Code Size](https://img.shields.io/github/languages/code-size/AUTOM77/RWS)](.)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
