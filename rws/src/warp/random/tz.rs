@@ -3,20 +3,22 @@ use rand::Rng as _;
 use chrono::Local;
 use chrono_tz::Tz;
 
-fn process<'a>(_pair: (&'a str, &'a str)) -> (Cow<'a, str>, Cow<'a, str>){
+
+fn process<'a>(_pair: (&'a  str, &'a  str)) -> (Cow<'a, str>, Cow<'a, str>){
     let (locale, timezone) = _pair;
     let utc = Local::now();
     match timezone.parse::<Tz>() {
         Ok(tz) => {
             let tz_time = utc.with_timezone(&tz).format("%Y-%m-%dT%H:%M:%S%.3f%:z").to_string();
-            (std::borrow::Cow::Borrowed(locale), tz_time.into())
+            (locale.into(), tz_time.into())
         }
         Err(_) => {
             let tz_time = utc.format("%Y-%m-%dT%H:%M:%S%.3f%:z").to_string();
-            (std::borrow::Cow::Borrowed(locale), tz_time.into())
+            (locale.into(), tz_time.into())
         }
     }
 }
+
 
 pub fn sample()-> (Cow<'static, str>, Cow<'static, str>){
     let tz_pool = vec![
