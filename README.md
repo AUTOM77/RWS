@@ -7,6 +7,8 @@
 
 > Unofficial Rust implementation of Cloudflare Warp Proxy with Socks5 support.
 
+🚧 Building .. 🚧
+
 ## Features
 
 1. Implementation **Wireguard** protocol in Rust with `eBPF-driven` optimization
