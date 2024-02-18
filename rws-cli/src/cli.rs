@@ -22,6 +22,7 @@ fn main() {
     // .w_id(&args.device_id)
     .random_id()
     .random_key()
+    .random_token()
     .random_dev()
     .random_tz()
     .build();
