@@ -6,6 +6,7 @@ use std::fmt;
 #[derive(Deserialize)]
 pub struct WClientBuilder<'w> {
     _id: Option<&'w str>,
+    _sec: Option<&'w str>,
     _key: Option<&'w str>,
     _token: Option<&'w str>,
     _model: Option<&'w str>,
@@ -17,12 +18,16 @@ pub struct WClientBuilder<'w> {
 impl<'w> fmt::Debug for WClientBuilder<'w> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.debug_struct("Client")
-            .field("id", &self._id.unwrap_or("default_id"))
-            .field("key", &self._key.unwrap_or("default_key"))
-            .field("token", &self._token.unwrap_or("default_token"))
-            .field("model", &self._model.unwrap_or("default_model"))
-            .field("type", &self._type.unwrap_or("default_type"))
-            .field("tos", &self._tos.unwrap_or("default_tos"))
+            .field("install_id", &self._id.unwrap_or("default_id"))
+            .field("private_key", &self._sec.unwrap_or("default_private_key"))
+            .field("public_key", &self._key.unwrap_or("default_public_key"))
+            .field("fcm_token", &format!("{}:APA91b{}",
+                    &self._id.unwrap_or("default_id"),
+                    &self._token.unwrap_or("default_token"))
+                )
+            .field("device_model", &self._model.unwrap_or("default_model"))
+            .field("device_type", &self._type.unwrap_or("default_type"))
+            .field("datetime", &self._tos.unwrap_or("default_tos"))
             .field("locale", &self._locale.unwrap_or("default_locale"))
             .finish()
     }
@@ -32,6 +37,7 @@ impl<'w> WClientBuilder<'w> {
     pub fn new() -> WClientBuilder<'w> {
         Self {
             _id: None,
+            _sec: None,
             _key: None,
             _token: None,
             _model: None,
@@ -43,6 +49,10 @@ impl<'w> WClientBuilder<'w> {
 
     pub fn w_id(mut self, _id: &'w str) -> Self {
         self._id = Some(_id);
+        self
+    }
+    pub fn w_sec(mut self, _sec: &'w str) -> Self {
+        self._sec = Some(_sec);
         self
     }
     pub fn w_key(mut self, _key: &'w str) -> Self {
@@ -73,7 +83,8 @@ impl<'w> WClientBuilder<'w> {
     pub fn build(self) -> WClientBuilder<'w> {
         WClientBuilder {
             _id: Some(self._id.unwrap_or("default_id")),
-            _key: Some(self._key.unwrap_or("default_key")),
+            _sec: Some(self._sec.unwrap_or("default_private_key")),
+            _key: Some(self._key.unwrap_or("default_public_key")),
             _token: Some(self._token.unwrap_or("default_token")),
             _model: Some(self._model.unwrap_or("default_model")),
             _type: Some(self._type.unwrap_or("default_type")),
@@ -91,7 +102,9 @@ impl<'w> WClientBuilder<'w> {
     }
 
     pub fn wg_key(self) -> Self {
-        self.w_key(crypto::sample())
+        let (s, k) = crypto::sample();
+        self.w_sec(s)
+            .w_key(k)
     }
 
     pub fn random_token(self) -> Self {
