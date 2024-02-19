@@ -22,9 +22,9 @@ impl<'w> fmt::Debug for WClientBuilder<'w> {
             .field("private_key", &self._sec.unwrap_or("default_private_key"))
             .field("public_key", &self._key.unwrap_or("default_public_key"))
             .field("fcm_token", &format!("{}:APA91b{}",
-                    &self._id.unwrap_or("default_id"),
-                    &self._token.unwrap_or("default_token"))
-                )
+                &self._id.unwrap_or("default_id"),
+                &self._token.unwrap_or("default_token"))
+            )
             .field("device_model", &self._model.unwrap_or("default_model"))
             .field("device_type", &self._type.unwrap_or("default_type"))
             .field("datetime", &self._tos.unwrap_or("default_tos"))
@@ -116,26 +116,23 @@ impl<'w> WClientBuilder<'w> {
         self.w_model(t)
             .w_type(z)
     }
-
     pub fn random_tz(self) -> Self {
         let (t, z) = random::tz::sample(); 
         self.w_tos(t)
             .w_locale(z)
     }
-
-    pub fn from_id(_id:&'w str) -> Self {
+    pub fn random() -> Self {
         WClientBuilder::new()
-        .w_id(_id)
+        .random_id()
         .wg_key()
         .random_token()
         .random_dev()
         .random_tz()
         .build()
     }
-
-    pub fn random() -> Self {
+    pub fn from_id(_id:&'w str) -> Self {
         WClientBuilder::new()
-        .random_id()
+        .w_id(_id)
         .wg_key()
         .random_token()
         .random_dev()

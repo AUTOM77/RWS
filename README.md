@@ -9,7 +9,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Open Issues](https://img.shields.io/github/issues/AUTOM77/RWS)](https://github.com/AUTOM77/RWS/issues)
 
-> Unofficial eBPF-based Rust implementation of Cloudflare Warp Proxy with Socks5 support.
+> Unofficial eBPF-based Rust implementation of Cloudflare Warp+ Proxy with Socks5 support.
 
 🚧 Building .. 🚧
 
