@@ -1,4 +1,4 @@
-use crate::warp::random;
+use crate::random;
 use crate::wireguard::crypto;
 use serde::Deserialize;
 use std::fmt;
