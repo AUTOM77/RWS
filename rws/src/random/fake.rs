@@ -15,7 +15,7 @@ where
 }
 
 // pub fn sample() -> (&'static str, &'static str, &'static str, &'static str) {
-//     let _url = take(3, |c| c.is_ascii_digit());
+//     let _url = take(3, |c| c.is_ascii_digit()); 
 //     let _ins = take(43, |_c| true);
 //     let _key = take(43, |_c| true);
 //     let _tk = take(134, |_c| true);

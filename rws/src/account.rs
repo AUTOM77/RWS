@@ -5,9 +5,9 @@ use std::fmt;
 
 #[derive(Deserialize, Default)]
 pub struct WClientBuilder<'w> {
-    _id: &'w str,
+    _id: &'w str, //36 [8-4-4-4-12]
     _sec: &'w str,
-    _key: &'w str,
+    _key: &'w str, //64
     _token: &'w str,
     _model: &'w str,
     _type: &'w str,
@@ -26,7 +26,7 @@ impl<'w> fmt::Debug for WClientBuilder<'w> {
                 &self._token)
             )
             .field("device_model", &self._model)
-            .field("device_type", &self._type)
+            .field("os_type", &self._type)
             .field("datetime", &self._tos)
             .field("locale", &self._locale)
             .finish()

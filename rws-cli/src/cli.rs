@@ -1,5 +1,6 @@
 use clap::Parser;
 use librws::account::WClientBuilder;
+use librws::api::CloudflareBuilder;
 
 #[derive(Parser, Debug)]
 struct Args {
@@ -19,6 +20,8 @@ struct Args {
 fn main() {
     let _args = Args::parse();
     let wclient = WClientBuilder::random();
+    let cfapi = CloudflareBuilder::random();
 
     println!("{:#?}", wclient);
+    println!("{:#?}", cfapi);
 }
