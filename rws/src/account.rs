@@ -67,6 +67,10 @@ impl<'w> WClientBuilder<'w> {
         self
     }
 
+    pub fn model(self) -> &'w str {
+        self._model
+    }
+
     pub fn build(self) -> WClientBuilder<'w> {
         self
     }
@@ -101,13 +105,14 @@ impl<'w> WClientBuilder<'w> {
     }
     pub fn random() -> Self {
         WClientBuilder::default()
-        .random_id()
         .wg_key()
+        .random_id()
         .random_token()
         .random_dev()
         .random_tz()
         .build()
     }
+
     pub fn from_id(_id:&'w str) -> Self {
         WClientBuilder::default()
         .w_id(_id)
@@ -115,6 +120,12 @@ impl<'w> WClientBuilder<'w> {
         .random_token()
         .random_dev()
         .random_tz()
+        .build()
+    }
+
+    pub fn from_referrer(_refer:&'w str) -> Self {
+        WClientBuilder::default()
+        .w_id(_refer)
         .build()
     }
 }
