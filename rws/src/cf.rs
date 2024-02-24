@@ -5,6 +5,7 @@ use std::fmt;
 #[derive(Deserialize, Default)]
 pub struct Shot {
     account: String,
+    token: String,
     license: String,
     secret: String,
     refer: String,
@@ -14,6 +15,7 @@ impl fmt::Debug for Shot {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.debug_struct("TEST_SIMPLE")
             .field("account", &self.account)
+            .field("token", &self.token)
             .field("license", &self.license)
             .field("private_key", &self.secret)
             .field("private_key_length", &self.secret.len())
