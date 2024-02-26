@@ -94,9 +94,9 @@ impl<'w> WClientBuilder<'w> {
     }
     
     pub fn random_dev(self) -> Self {
-        let (t, z) = random::dev::sample(); 
-        self.w_model(t)
-            .w_type(z)
+        let (d, v) = random::dev::sample(); 
+        self.w_model(d)
+            .w_type(v)
     }
     pub fn random_tz(self) -> Self {
         let (t, z) = random::tz::sample(); 

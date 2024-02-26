@@ -12,7 +12,7 @@ fn process(_pair: (&str, &str)) -> (&'static str, &'static str){
         }
         Err(_) => {
             let tz_time = utc.format("%Y-%m-%dT%H:%M:%S%.3f%:z");
-            (locale.to_string().leak(), tz_time.to_string().leak())
+            (tz_time.to_string().leak(), locale.to_string().leak())
         }
     }
 }

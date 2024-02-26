@@ -20,11 +20,12 @@ struct Args {
 
 fn main() {
     let _args = Args::parse();
-    let wclient = WClientBuilder::random();
-    println!("{:#?}", wclient);
-    let cfapi = CloudflareBuilder::from_dev(wclient.model()).get_api();
-    println!("{:#?}", cfapi);
+    let _wclient = WClientBuilder::random();
+    // println!("{:#?}", wclient);
+    let _cfapi = CloudflareBuilder::from_dev(_wclient.model()).get_api();
+    // println!("{:#?}", cfapi);
 
     let s = Shot::new();
-    println!("{:#?}", s);
+    // println!("{:#?}", s);
+    s.post();
 }
